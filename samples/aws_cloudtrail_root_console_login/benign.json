@@ -1,0 +1,63 @@
+{
+  "description": "IAM user and federated console logins, plus a non-login root event",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:00:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/dmelimi",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333",
+      "responseElements": {
+        "ConsoleLogin": "Success"
+      },
+      "additionalEventData": {
+        "MFAUsed": "Yes"
+      }
+    },
+    {
+      "@timestamp": "2026-09-14T10:01:00Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:01:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "arn": "arn:aws:sts::111122223333:assumed-role/AWSReservedSSO_ReadOnly/jdoe",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333",
+      "responseElements": {
+        "ConsoleLogin": "Success"
+      }
+    },
+    {
+      "@timestamp": "2026-09-14T10:02:00Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:02:00Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "GetAccountSummary",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/dmelimi",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333"
+    }
+  ]
+}

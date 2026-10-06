@@ -1,0 +1,26 @@
+{
+  "description": "Hash verification and certificate store listing",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 1,
+      "Computer": "WS-IT-003",
+      "User": "CORP\\admin.lee",
+      "Image": "C:\\Windows\\System32\\certutil.exe",
+      "CommandLine": "certutil -hashfile C:\\Downloads\\installer.msi SHA256",
+      "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "ParentCommandLine": "powershell.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:15Z",
+      "EventID": 1,
+      "Computer": "WS-IT-003",
+      "User": "CORP\\admin.lee",
+      "Image": "C:\\Windows\\System32\\certutil.exe",
+      "CommandLine": "certutil -store My",
+      "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "ParentCommandLine": "powershell.exe"
+    }
+  ]
+}

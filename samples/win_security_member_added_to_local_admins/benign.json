@@ -1,0 +1,34 @@
+{
+  "description": "Additions to other local groups and normal logons",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 4732,
+      "Computer": "WS-ENG-031",
+      "TargetUserName": "Remote Desktop Users",
+      "TargetSid": "S-1-5-32-555",
+      "MemberName": "-",
+      "MemberSid": "S-1-5-21-3623811015-3361044348-30300820-1105",
+      "SubjectUserName": "admin.lee"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:30Z",
+      "EventID": 4732,
+      "Computer": "WS-ENG-031",
+      "TargetUserName": "Backup Operators",
+      "TargetSid": "S-1-5-32-551",
+      "MemberName": "-",
+      "MemberSid": "S-1-5-21-3623811015-3361044348-30300820-1201",
+      "SubjectUserName": "admin.lee"
+    },
+    {
+      "@timestamp": "2026-09-14T10:01:00Z",
+      "EventID": 4624,
+      "Computer": "WS-ENG-031",
+      "TargetUserName": "admin.lee",
+      "LogonType": 2,
+      "IpAddress": "-"
+    }
+  ]
+}

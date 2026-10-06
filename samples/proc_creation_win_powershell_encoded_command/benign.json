@@ -1,0 +1,36 @@
+{
+  "description": "Normal admin PowerShell usage, including -ExecutionPolicy and -Command",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 1,
+      "Computer": "SRV-APP-01",
+      "User": "CORP\\svc_deploy",
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "CommandLine": "powershell.exe -ExecutionPolicy Bypass -File C:\\Scripts\\deploy.ps1",
+      "ParentImage": "C:\\Windows\\System32\\svchost.exe",
+      "ParentCommandLine": "svchost.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:05Z",
+      "EventID": 1,
+      "Computer": "WS-IT-003",
+      "User": "CORP\\admin.lee",
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "CommandLine": "powershell.exe -Command Get-Service | Where-Object Status -eq Running",
+      "ParentImage": "C:\\Windows\\explorer.exe",
+      "ParentCommandLine": "explorer.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:09Z",
+      "EventID": 1,
+      "Computer": "WS-IT-003",
+      "User": "CORP\\admin.lee",
+      "Image": "C:\\Windows\\System32\\certreq.exe",
+      "CommandLine": "certreq.exe -enroll -machine -q WebServer",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentCommandLine": "cmd.exe"
+    }
+  ]
+}

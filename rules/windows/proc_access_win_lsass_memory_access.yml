@@ -1,0 +1,35 @@
+title: Suspicious Process Access To LSASS Memory
+id: 7a2e9d14-3c6b-4f80-b1d5-2e9f4a6c8b02
+status: test
+description: >-
+  Detects a process opening a handle to lsass.exe with access rights commonly
+  requested by credential dumping tools (Mimikatz sekurlsa, comsvcs.dll
+  MiniDump, ProcDump). Known system and security-product callers are excluded.
+author: Dinesh Melimi
+date: 2026-10-06
+references:
+  - https://attack.mitre.org/techniques/T1003/001/
+tags:
+  - attack.credential-access
+  - attack.t1003.001
+logsource:
+  product: windows
+  category: process_access
+detection:
+  selection:
+    TargetImage|endswith: '\lsass.exe'
+    GrantedAccess:
+      - '0x1010'
+      - '0x1410'
+      - '0x1438'
+      - '0x143a'
+      - '0x1fffff'
+  filter_known:
+    SourceImage|endswith:
+      - '\MsMpEng.exe'
+      - '\wininit.exe'
+      - '\csrss.exe'
+  condition: selection and not filter_known
+falsepositives:
+  - EDR, AV and backup agents not covered by the filter; add them after review
+level: high

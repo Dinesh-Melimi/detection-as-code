@@ -1,0 +1,33 @@
+title: PowerShell Execution With Encoded Command
+id: 3f1c2a7e-5b8d-4e21-9a6f-0c4d7e2b1a01
+status: test
+description: >-
+  Detects powershell.exe or pwsh.exe launched with an -EncodedCommand style
+  argument (including its short abbreviations) followed by a Base64 blob.
+  Attackers use encoded commands to hide script content from casual review
+  and simple command-line string matching.
+author: Dinesh Melimi
+date: 2026-10-06
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+  - https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pwsh
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.defense-evasion
+  - attack.t1027
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_img:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_enc:
+    # -e, -ec, -en, -enc, ... -encodedcommand followed by a long Base64 string
+    CommandLine|re: '\s[-/]e(c|n|nc|nco|ncod|ncode|ncoded|ncodedc|ncodedco|ncodedcom|ncodedcomm|ncodedcomma|ncodedcomman|ncodedcommand)?\s+[A-Za-z0-9+/=]{20,}'
+  condition: selection_img and selection_enc
+falsepositives:
+  - Some management agents and installers (e.g. SCCM, RMM tools) legitimately use encoded commands; baseline and filter by parent process
+level: medium

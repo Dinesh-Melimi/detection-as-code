@@ -1,0 +1,60 @@
+{
+  "description": "Same-country sign-ins, travel spread over hours, and a failed foreign attempt",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "UserPrincipalName": "bob@contoso.com",
+      "Location": "US",
+      "IPAddress": "198.51.100.20",
+      "ResultType": "0",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:00Z",
+      "UserPrincipalName": "bob@contoso.com",
+      "Location": "US",
+      "IPAddress": "198.51.100.21",
+      "ResultType": "0",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "UserPrincipalName": "carol@contoso.com",
+      "Location": "US",
+      "IPAddress": "198.51.100.30",
+      "ResultType": "0",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    },
+    {
+      "@timestamp": "2026-09-14T16:00:00Z",
+      "UserPrincipalName": "carol@contoso.com",
+      "Location": "DE",
+      "IPAddress": "192.0.2.80",
+      "ResultType": "0",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "UserPrincipalName": "dave@contoso.com",
+      "Location": "US",
+      "IPAddress": "198.51.100.40",
+      "ResultType": "0",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    },
+    {
+      "@timestamp": "2026-09-14T10:05:00Z",
+      "UserPrincipalName": "dave@contoso.com",
+      "Location": "CN",
+      "IPAddress": "203.0.113.150",
+      "ResultType": "50126",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    }
+  ]
+}

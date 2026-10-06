@@ -1,0 +1,95 @@
+{
+  "description": "Read-only CloudTrail calls and trail creation / start",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:00:00Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "DescribeTrails",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/auditor",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:10Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:00:10Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "GetTrailStatus",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/auditor",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333",
+      "requestParameters": {
+        "name": "org-trail"
+      }
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:20Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:00:20Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "CreateTrail",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "arn": "arn:aws:sts::111122223333:assumed-role/terraform/ci",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333",
+      "requestParameters": {
+        "name": "org-trail"
+      }
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:25Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:00:25Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "StartLogging",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "arn": "arn:aws:sts::111122223333:assumed-role/terraform/ci",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333",
+      "requestParameters": {
+        "name": "org-trail"
+      }
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:30Z",
+      "eventVersion": "1.09",
+      "eventTime": "2026-09-14T10:00:30Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "StopInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "198.51.100.10",
+      "userAgent": "Mozilla/5.0",
+      "userIdentity": {
+        "type": "IAMUser",
+        "arn": "arn:aws:iam::111122223333:user/ops",
+        "accountId": "111122223333"
+      },
+      "recipientAccountId": "111122223333"
+    }
+  ]
+}

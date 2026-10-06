@@ -1,0 +1,39 @@
+title: Scheduled Task Created With Suspicious Action
+id: 1b9e6c3a-8d2f-4e75-a0c4-5f7b3d9e1c04
+status: test
+description: >-
+  Detects schtasks.exe /create where the task action (/tr) runs from a
+  user-writable location or launches a script interpreter / LOLBin. This is a
+  common persistence pattern for commodity malware.
+author: Dinesh Melimi
+date: 2026-10-06
+references:
+  - https://attack.mitre.org/techniques/T1053/005/
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1053.005
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_create:
+    Image|endswith: '\schtasks.exe'
+    CommandLine|contains|all:
+      - '/create'
+      - '/tr'
+  selection_action:
+    CommandLine|contains:
+      - '\AppData\'
+      - '\Temp\'
+      - '\Users\Public\'
+      - '\ProgramData\'
+      - 'powershell'
+      - 'mshta'
+      - 'rundll32'
+      - 'regsvr32'
+      - 'wscript'
+  condition: selection_create and selection_action
+falsepositives:
+  - Some per-user software updaters install tasks under AppData (e.g. Teams, Zoom); filter by task name after review
+level: medium

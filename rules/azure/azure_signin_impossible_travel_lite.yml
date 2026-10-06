@@ -1,0 +1,34 @@
+title: Successful Sign-ins From Multiple Countries Within One Hour
+id: 8f1b3d6a-4e2c-4a59-b7d0-3e6c9a1f4b08
+status: experimental
+description: >-
+  A simplified "impossible travel" check. Alerts when the same user has
+  successful Entra ID sign-ins (ResultType 0) from two or more different
+  country codes within one hour. It does not compute geographic distance or
+  speed, so VPNs and nearby borders will cause noise.
+author: Dinesh Melimi
+date: 2026-10-06
+references:
+  - https://attack.mitre.org/techniques/T1078/004/
+tags:
+  - attack.initial-access
+  - attack.t1078
+  - attack.t1078.004
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    ResultType: '0'
+  condition: selection
+correlation:
+  type: value_count
+  field: Location
+  group_by:
+    - UserPrincipalName
+  timeframe: 1h
+  threshold: 2
+falsepositives:
+  - Corporate or consumer VPN egress in another country
+  - Travelling users near a border
+level: medium

@@ -1,0 +1,27 @@
+title: User Added To Local Administrators Group
+id: c4d8a1f2-6e3b-4a97-8c05-9b1e7f3d2a03
+status: test
+description: >-
+  Detects Security event 4732 where a member is added to the builtin
+  Administrators group (SID S-1-5-32-544). Attackers add accounts to local
+  admins to keep privileged access after initial compromise.
+author: Dinesh Melimi
+date: 2026-10-06
+references:
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4732
+  - https://attack.mitre.org/techniques/T1098/
+tags:
+  - attack.persistence
+  - attack.t1098
+  - attack.t1136.001
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4732
+    TargetSid: 'S-1-5-32-544'
+  condition: selection
+falsepositives:
+  - Legitimate administration and provisioning; correlate with change tickets
+level: medium

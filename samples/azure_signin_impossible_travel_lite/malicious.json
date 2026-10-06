@@ -1,0 +1,33 @@
+{
+  "description": "alice signs in from the US, then from Russia 25 minutes later",
+  "expected_alerts": 1,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "UserPrincipalName": "alice@contoso.com",
+      "Location": "US",
+      "IPAddress": "198.51.100.14",
+      "ResultType": "0",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    },
+    {
+      "@timestamp": "2026-09-14T10:25:00Z",
+      "UserPrincipalName": "alice@contoso.com",
+      "Location": "RU",
+      "IPAddress": "203.0.113.200",
+      "ResultType": "0",
+      "AppDisplayName": "Office 365 Exchange Online",
+      "ClientAppUsed": "Browser"
+    },
+    {
+      "@timestamp": "2026-09-14T10:26:40Z",
+      "UserPrincipalName": "alice@contoso.com",
+      "Location": "RU",
+      "IPAddress": "203.0.113.200",
+      "ResultType": "0",
+      "AppDisplayName": "Microsoft Graph",
+      "ClientAppUsed": "Browser"
+    }
+  ]
+}

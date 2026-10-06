@@ -1,0 +1,36 @@
+{
+  "description": "Encoded PowerShell launched from a macro and from a cmd one-liner",
+  "expected_alerts": 2,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 1,
+      "Computer": "WS-FIN-022",
+      "User": "CORP\\jsmith",
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "CommandLine": "powershell.exe -NoP -W Hidden -enc SQBFAFgAIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIABOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkA",
+      "ParentImage": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+      "ParentCommandLine": "WINWORD.EXE"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:40Z",
+      "EventID": 1,
+      "Computer": "WS-FIN-022",
+      "User": "CORP\\jsmith",
+      "Image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+      "CommandLine": "pwsh.exe -ExecutionPolicy Bypass -EncodedCommand JABjAD0ATgBlAHcALQBPAGIAagBlAGMAdAAgAFMAeQBzAHQAZQBtAC4ATgBlAHQA",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentCommandLine": "cmd.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:01:00Z",
+      "EventID": 1,
+      "Computer": "WS-FIN-022",
+      "User": "CORP\\jsmith",
+      "Image": "C:\\Windows\\System32\\whoami.exe",
+      "CommandLine": "whoami /all",
+      "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "ParentCommandLine": "powershell.exe"
+    }
+  ]
+}

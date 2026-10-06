@@ -1,0 +1,35 @@
+title: Certutil Used To Download Or Decode Files
+id: 4e9a1c7b-3f6d-4b28-9c51-b8e2d4a6f010
+status: test
+description: >-
+  Detects certutil.exe with -urlcache / -verifyctl (download from a URL) or
+  -decode (Base64 decode). Certutil is a signed Windows binary frequently
+  abused to fetch and unpack payloads.
+author: Dinesh Melimi
+date: 2026-10-06
+references:
+  - https://attack.mitre.org/techniques/T1105/
+  - https://lolbas-project.github.io/lolbas/Binaries/Certutil/
+tags:
+  - attack.command-and-control
+  - attack.t1105
+  - attack.defense-evasion
+  - attack.t1140
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_img:
+    Image|endswith: '\certutil.exe'
+  selection_cli:
+    CommandLine|contains:
+      - '-urlcache'
+      - '/urlcache'
+      - '-verifyctl'
+      - '/verifyctl'
+      - '-decode'
+      - '/decode'
+  condition: selection_img and selection_cli
+falsepositives:
+  - Administrators testing CRL/certificate retrieval with -urlcache
+level: high

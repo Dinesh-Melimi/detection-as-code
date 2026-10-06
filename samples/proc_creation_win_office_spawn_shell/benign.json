@@ -1,0 +1,36 @@
+{
+  "description": "Office printing helper, explorer launching cmd, Word opening a document",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 1,
+      "Computer": "WS-FIN-022",
+      "User": "CORP\\jsmith",
+      "Image": "C:\\Windows\\splwow64.exe",
+      "CommandLine": "splwow64.exe 8192",
+      "ParentImage": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+      "ParentCommandLine": "WINWORD.EXE"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:05Z",
+      "EventID": 1,
+      "Computer": "WS-IT-003",
+      "User": "CORP\\admin.lee",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "CommandLine": "cmd.exe",
+      "ParentImage": "C:\\Windows\\explorer.exe",
+      "ParentCommandLine": "explorer.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:09Z",
+      "EventID": 1,
+      "Computer": "WS-FIN-022",
+      "User": "CORP\\jsmith",
+      "Image": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+      "CommandLine": "\"WINWORD.EXE\" /n \"C:\\Users\\jsmith\\Documents\\Q3.docx\"",
+      "ParentImage": "C:\\Windows\\explorer.exe",
+      "ParentCommandLine": "explorer.exe"
+    }
+  ]
+}

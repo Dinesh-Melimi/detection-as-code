@@ -1,0 +1,23 @@
+{
+  "description": "Attacker adds a newly created account to local Administrators",
+  "expected_alerts": 1,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 4720,
+      "Computer": "WS-ENG-031",
+      "TargetUserName": "helpdesk_tmp",
+      "SubjectUserName": "jsmith"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:08Z",
+      "EventID": 4732,
+      "Computer": "WS-ENG-031",
+      "TargetUserName": "Administrators",
+      "TargetSid": "S-1-5-32-544",
+      "MemberName": "-",
+      "MemberSid": "S-1-5-21-3623811015-3361044348-30300820-1013",
+      "SubjectUserName": "jsmith"
+    }
+  ]
+}

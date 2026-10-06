@@ -1,0 +1,18 @@
+[project]
+name = "detection-as-code"
+version = "0.1.0"
+description = "Sigma-style detection rules with validation, KQL/SPL conversion and sample-based testing"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Dinesh Melimi" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]

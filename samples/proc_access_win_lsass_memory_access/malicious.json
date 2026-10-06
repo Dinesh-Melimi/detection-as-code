@@ -1,0 +1,24 @@
+{
+  "description": "Mimikatz and comsvcs MiniDump opening LSASS",
+  "expected_alerts": 2,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 10,
+      "Computer": "WS-HR-014",
+      "SourceImage": "C:\\Users\\Public\\m64.exe",
+      "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+      "GrantedAccess": "0x1010",
+      "CallTrace": "C:\\Windows\\SYSTEM32\\ntdll.dll+9d204|UNKNOWN(00007FF8A1B2C3D4)"
+    },
+    {
+      "@timestamp": "2026-09-14T10:02:00Z",
+      "EventID": 10,
+      "Computer": "WS-HR-014",
+      "SourceImage": "C:\\Windows\\System32\\rundll32.exe",
+      "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+      "GrantedAccess": "0x1fffff",
+      "CallTrace": "C:\\Windows\\SYSTEM32\\ntdll.dll+9d204|UNKNOWN(00007FF8A1B2C3D4)"
+    }
+  ]
+}

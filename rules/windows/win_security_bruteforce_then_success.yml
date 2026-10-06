@@ -1,0 +1,39 @@
+title: Multiple Failed Logons Followed By Success
+id: 9e3f7b25-1a4c-4d68-b2e9-6c0a8f5d3e05
+status: test
+description: >-
+  Detects five or more failed logons (4625) for the same account followed by
+  a successful network or RDP logon (4624, LogonType 3 or 10) within 10
+  minutes. Indicates a password guessing attempt that likely succeeded.
+author: Dinesh Melimi
+date: 2026-10-06
+references:
+  - https://attack.mitre.org/techniques/T1110/001/
+tags:
+  - attack.credential-access
+  - attack.t1110
+  - attack.t1110.001
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_failed:
+    EventID: 4625
+  selection_success:
+    EventID: 4624
+    LogonType:
+      - 3
+      - 10
+  condition: selection_failed or selection_success
+correlation:
+  type: sequence
+  group_by:
+    - TargetUserName
+  timeframe: 10m
+  steps:
+    - selection: selection_failed
+      min_count: 5
+    - selection: selection_success
+falsepositives:
+  - Users who forget a recently changed password and then succeed; tune min_count per environment
+level: high

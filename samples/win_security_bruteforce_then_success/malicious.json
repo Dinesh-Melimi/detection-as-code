@@ -1,0 +1,69 @@
+{
+  "description": "Six failed network logons for svc_backup then a success, all within two minutes",
+  "expected_alerts": 1,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "svc_backup",
+      "IpAddress": "203.0.113.50",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:15Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "svc_backup",
+      "IpAddress": "203.0.113.50",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:30Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "svc_backup",
+      "IpAddress": "203.0.113.50",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:45Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "svc_backup",
+      "IpAddress": "203.0.113.50",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:01:00Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "svc_backup",
+      "IpAddress": "203.0.113.50",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:01:15Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "svc_backup",
+      "IpAddress": "203.0.113.50",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:02:00Z",
+      "EventID": 4624,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "svc_backup",
+      "IpAddress": "203.0.113.50",
+      "LogonType": 3,
+      "Status": "0x0"
+    }
+  ]
+}

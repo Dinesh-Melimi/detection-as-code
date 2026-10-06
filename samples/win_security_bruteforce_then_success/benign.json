@@ -1,0 +1,168 @@
+{
+  "description": "Typos then success, a failed spray with no success, and a success well outside the window",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "mgarcia",
+      "IpAddress": "10.20.4.18",
+      "LogonType": 10,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:10Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "mgarcia",
+      "IpAddress": "10.20.4.18",
+      "LogonType": 10,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:30Z",
+      "EventID": 4624,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "mgarcia",
+      "IpAddress": "10.20.4.18",
+      "LogonType": 10,
+      "Status": "0x0"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:00Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:05Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:10Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:15Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:20Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:25Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:30Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:10:35Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "administrator",
+      "IpAddress": "198.51.100.77",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:20:00Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "kpatel",
+      "IpAddress": "10.20.7.44",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:20:20Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "kpatel",
+      "IpAddress": "10.20.7.44",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:20:40Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "kpatel",
+      "IpAddress": "10.20.7.44",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:21:00Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "kpatel",
+      "IpAddress": "10.20.7.44",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:21:20Z",
+      "EventID": 4625,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "kpatel",
+      "IpAddress": "10.20.7.44",
+      "LogonType": 3,
+      "Status": "0xc000006d"
+    },
+    {
+      "@timestamp": "2026-09-14T10:50:00Z",
+      "EventID": 4624,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "kpatel",
+      "IpAddress": "10.20.7.44",
+      "LogonType": 3,
+      "Status": "0x0"
+    },
+    {
+      "@timestamp": "2026-09-14T11:00:00Z",
+      "EventID": 4624,
+      "Computer": "SRV-FILE-02",
+      "TargetUserName": "kpatel",
+      "IpAddress": "10.20.7.44",
+      "LogonType": 2,
+      "Status": "0x0"
+    }
+  ]
+}

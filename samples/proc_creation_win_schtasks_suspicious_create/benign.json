@@ -1,0 +1,36 @@
+{
+  "description": "Vendor updater task in Program Files, task queries and deletes",
+  "expected_alerts": 0,
+  "events": [
+    {
+      "@timestamp": "2026-09-14T10:00:00Z",
+      "EventID": 1,
+      "Computer": "WS-MKT-007",
+      "User": "NT AUTHORITY\\SYSTEM",
+      "Image": "C:\\Windows\\System32\\schtasks.exe",
+      "CommandLine": "schtasks.exe /create /tn \"GoogleUpdateTaskMachineUA\" /tr \"\\\"C:\\Program Files (x86)\\Google\\Update\\GoogleUpdate.exe\\\" /ua /installsource scheduler\" /sc daily /f",
+      "ParentImage": "C:\\Program Files (x86)\\Google\\Update\\GoogleUpdate.exe",
+      "ParentCommandLine": "GoogleUpdate.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:10Z",
+      "EventID": 1,
+      "Computer": "WS-IT-003",
+      "User": "CORP\\admin.lee",
+      "Image": "C:\\Windows\\System32\\schtasks.exe",
+      "CommandLine": "schtasks /query /fo LIST /v",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentCommandLine": "cmd.exe"
+    },
+    {
+      "@timestamp": "2026-09-14T10:00:20Z",
+      "EventID": 1,
+      "Computer": "WS-IT-003",
+      "User": "CORP\\admin.lee",
+      "Image": "C:\\Windows\\System32\\schtasks.exe",
+      "CommandLine": "schtasks /delete /tn \"Updater\" /f",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentCommandLine": "cmd.exe"
+    }
+  ]
+}

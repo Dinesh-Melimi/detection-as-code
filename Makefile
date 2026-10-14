@@ -23,10 +23,16 @@ test-samples:  ## Print per-rule results against sample logs
 convert:  ## Convert rules to KQL and SPL under build/
 	$(PYTHON) -m dac convert --target all --out build
 
+sentinel:  ## Export Sentinel analytics rules as an ARM template
+	$(PYTHON) -m dac sentinel --out build/sentinel/analytics-rules.json
+
+migrate:  ## Example legacy SIEM -> Sentinel migration plan
+	$(PYTHON) -m dac migrate --legacy examples/legacy_splunk_searches.csv
+
 coverage:  ## Regenerate docs/COVERAGE.md
 	$(PYTHON) -m dac coverage --out docs/COVERAGE.md
 
-ci: lint validate test convert coverage  ## Everything CI runs
+ci: lint validate test convert sentinel coverage  ## Everything CI runs
 
 clean:  ## Remove generated files
 	rm -rf build .pytest_cache .ruff_cache

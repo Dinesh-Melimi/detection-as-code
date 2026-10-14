@@ -93,6 +93,32 @@ win_security_bruteforce_then_success               malicious         1      1  P
 win_security_bruteforce_then_success               benign            0      0  PASS
 ```
 
+## Microsoft Sentinel deployment and SIEM migration
+
+**Deploy as Sentinel analytics rules.** `python -m dac sentinel` packages every rule as a scheduled analytics rule in one ARM template, ready for `az deployment group create`:
+
+- KQL query, severity, and schedule (`queryFrequency`/`queryPeriod` from the rule's correlation window)
+- MITRE ATT&CK tactics and techniques in Sentinel's format
+- Entity mappings (Host, Account, IP, Process) for incidents, the investigation graph, and UEBA. Only columns that still exist after a `summarize` are mapped, so the deployment does not fail on missing columns
+- Incident creation and alert grouping, with a stable GUID per rule so redeploys update rules instead of duplicating them
+
+```bash
+python -m dac sentinel --out build/sentinel/analytics-rules.json
+az deployment group create -g <resource-group> --template-file build/sentinel/analytics-rules.json \
+  --parameters workspace=<workspace-name>
+```
+
+**Plan a legacy SIEM migration.** `python -m dac migrate --legacy searches.csv` takes an export of legacy saved searches (name, sourcetype, ATT&CK techniques) and reports:
+
+- which detections are already covered by a tested rule here (migrated / partial / gap / needs ATT&CK mapping)
+- which data sources must be onboarded first and how: built-in connector, AMA with a DCR, CEF/Syslog through a Linux log forwarder, or a custom table with a parser
+
+```
+8 legacy detections; 50.0% already covered by tested rules.
+| pan:threat | CommonSecurityLog | CEF via AMA on a Linux log forwarder | 1 |
+| okta:im2   | Okta_CL           | Okta SSO connector (custom table + parser) | 1 |
+```
+
 ## Repository layout
 
 ```

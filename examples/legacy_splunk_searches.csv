@@ -1,0 +1,9 @@
+name,datasource,techniques
+Certutil download,XmlWinEventLog:Microsoft-Windows-Sysmon/Operational,T1105
+Encoded PowerShell,XmlWinEventLog:Microsoft-Windows-Sysmon/Operational,T1059.001;T1027
+Brute force then success,WinEventLog:Security,T1110
+AWS root login,aws:cloudtrail,T1078.004
+Palo Alto C2 beacon,pan:threat,T1071.001
+Okta MFA fatigue,okta:im2,T1621
+Office macro spawning shell,XmlWinEventLog:Microsoft-Windows-Sysmon/Operational,T1566.001;T1218.011
+Legacy admin report,WinEventLog:Security,

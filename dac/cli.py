@@ -3,13 +3,16 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
 from .convert import BACKENDS, convert_rule
 from .coverage import render_markdown
 from .harness import run_rule
+from .migrate import plan, render
 from .rules import RULES_DIR, load_rules, validate_all
+from .sentinel import arm_template
 
 
 def cmd_validate(args) -> int:
@@ -68,6 +71,31 @@ def cmd_coverage(args) -> int:
     return 0
 
 
+def cmd_sentinel(args) -> int:
+    rules = load_rules(Path(args.rules))
+    template = arm_template([r.data for r in rules])
+    text = json.dumps(template, indent=2)
+    if args.out == "-":
+        print(text)
+    else:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(text, encoding="utf-8")
+        print(f"wrote {args.out} ({len(template['resources'])} analytics rules)")
+    return 0
+
+
+def cmd_migrate(args) -> int:
+    p = plan(args.legacy, load_rules(Path(args.rules)))
+    md = render(p)
+    if args.out == "-":
+        print(md)
+    else:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(md, encoding="utf-8")
+        print(f"wrote {args.out}: {p['migrated_pct']}% migrated, {p['counts']}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="dac", description="Detection-as-Code toolkit")
     parser.add_argument("--rules", default=str(RULES_DIR), help="rules directory")
@@ -84,6 +112,16 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("coverage", help="generate ATT&CK coverage markdown")
     p.add_argument("--out", default="docs/COVERAGE.md", help="output file, or - for stdout")
     p.set_defaults(func=cmd_coverage)
+
+    p = sub.add_parser("sentinel", help="export rules as a Sentinel analytics-rule ARM template")
+    p.add_argument("--out", default="build/sentinel/analytics-rules.json",
+                   help="output file, or - for stdout")
+    p.set_defaults(func=cmd_sentinel)
+
+    p = sub.add_parser("migrate", help="plan a legacy SIEM to Sentinel migration")
+    p.add_argument("--legacy", required=True, help="CSV of legacy searches: name,datasource,techniques")
+    p.add_argument("--out", default="-", help="output markdown file, or - for stdout")
+    p.set_defaults(func=cmd_migrate)
 
     args = parser.parse_args(argv)
     return args.func(args)

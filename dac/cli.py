@@ -10,6 +10,8 @@ from pathlib import Path
 from .convert import BACKENDS, convert_rule
 from .coverage import render_markdown
 from .defender import export as defender_export
+from .effectiveness import coverage_gaps, load_outcomes, portfolio_health, rule_scorecard
+from .effectiveness import render as eff_render
 from .harness import run_rule
 from .migrate import plan, render
 from .rules import RULES_DIR, load_rules, validate_all
@@ -85,6 +87,23 @@ def cmd_sentinel(args) -> int:
     return 0
 
 
+def cmd_effectiveness(args) -> int:
+    from datetime import date
+    cards = rule_scorecard(load_outcomes(args.outcomes), date.fromisoformat(args.today))
+    pri = [ln.strip() for ln in open(args.priority) if ln.strip()] if args.priority else []
+    gaps = coverage_gaps(load_rules(Path(args.rules)), pri)
+    health = portfolio_health(cards)
+    text = eff_render(cards, gaps, health)
+    if args.out == "-":
+        print(text)
+    else:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(text, encoding="utf-8")
+        print(f"wrote {args.out}: {health['flagged']} rules flagged, "
+              f"{gaps['coverage_pct']}% priority coverage")
+    return 0
+
+
 def cmd_defender(args) -> int:
     rules = load_rules(Path(args.rules))
     result = defender_export([r.data for r in rules])
@@ -132,6 +151,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", default="build/sentinel/analytics-rules.json",
                    help="output file, or - for stdout")
     p.set_defaults(func=cmd_sentinel)
+
+    p = sub.add_parser("effectiveness",
+                       help="score detection fidelity/workload and find ATT&CK coverage gaps")
+    p.add_argument("--outcomes", required=True,
+                   help="CSV: rule,alerts,true_positives,benign_positives,last_alert,weeks")
+    p.add_argument("--priority", help="file of priority ATT&CK technique IDs, one per line")
+    p.add_argument("--today", default=__import__("datetime").date.today().isoformat())
+    p.add_argument("--out", default="-", help="output markdown file, or - for stdout")
+    p.set_defaults(func=cmd_effectiveness)
 
     p = sub.add_parser("defender", help="export rules as Microsoft Defender XDR custom detection rules")
     p.add_argument("--out", default="build/defender/custom-detections.json",

@@ -38,6 +38,8 @@ TECHNIQUES: dict[str, tuple[str, list[str]]] = {
     "T1098": ("Account Manipulation", ["persistence", "privilege-escalation"]),
     "T1105": ("Ingress Tool Transfer", ["command-and-control"]),
     "T1110": ("Brute Force", ["credential-access"]),
+    "T1486": ("Data Encrypted for Impact", ["impact"]),
+    "T1567.002": ("Exfiltration to Cloud Storage", ["exfiltration"]),
     "T1110.001": ("Brute Force: Password Guessing", ["credential-access"]),
     "T1136.001": ("Create Account: Local Account", ["persistence"]),
     "T1140": ("Deobfuscate/Decode Files or Information", ["defense-evasion"]),

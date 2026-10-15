@@ -93,6 +93,18 @@ win_security_bruteforce_then_success               malicious         1      1  P
 win_security_bruteforce_then_success               benign            0      0  PASS
 ```
 
+## Detection effectiveness and coverage gaps
+
+`python -m dac effectiveness` closes the detection-engineering feedback loop. Given per-rule alert outcomes from the SIEM/case system and a priority ATT&CK technique list, it scores each detection and flags what to tune:
+
+```bash
+python -m dac effectiveness --outcomes samples/outcomes.csv --priority samples/priority_techniques.txt
+```
+
+- Fidelity (true-positive rate) and analyst workload (alerts/week) per rule, lowest-fidelity first
+- Flags low-fidelity, high-volume, stale, and never-fired rules so tuning effort goes where it matters
+- Coverage gaps: priority ATT&CK techniques with no detection yet, to guide what to build next
+
 ## Microsoft Defender XDR custom detection rules
 
 `python -m dac defender` packages each endpoint/identity/email rule as a **Defender XDR custom detection rule** (advanced hunting): the KQL query, run frequency, severity, MITRE techniques, impacted-asset entities, and an alert template, ready for the Defender XDR custom detection API or portal import. Rules whose source is SIEM-only (e.g. AWS CloudTrail) are skipped and listed.

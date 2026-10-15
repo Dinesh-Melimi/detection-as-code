@@ -1,0 +1,7 @@
+rule,alerts,true_positives,benign_positives,last_alert,weeks
+proc_creation_win_powershell_encoded_command,140,8,132,2026-10-10,12
+proc_creation_win_certutil_download,22,20,2,2026-10-12,12
+win_security_bruteforce_then_success,60,51,9,2026-10-13,12
+aws_cloudtrail_root_console_login,3,3,0,2026-09-01,12
+proc_access_win_lsass_memory_access,0,0,0,,12
+azure_signin_impossible_travel_lite,18,2,16,2026-05-01,12

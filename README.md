@@ -93,6 +93,14 @@ win_security_bruteforce_then_success               malicious         1      1  P
 win_security_bruteforce_then_success               benign            0      0  PASS
 ```
 
+## Microsoft Defender XDR custom detection rules
+
+`python -m dac defender` packages each endpoint/identity/email rule as a **Defender XDR custom detection rule** (advanced hunting): the KQL query, run frequency, severity, MITRE techniques, impacted-asset entities, and an alert template, ready for the Defender XDR custom detection API or portal import. Rules whose source is SIEM-only (e.g. AWS CloudTrail) are skipped and listed.
+
+```bash
+python -m dac defender --out build/defender/custom-detections.json
+```
+
 ## Microsoft Sentinel deployment and SIEM migration
 
 **Deploy as Sentinel analytics rules.** `python -m dac sentinel` packages every rule as a scheduled analytics rule in one ARM template, ready for `az deployment group create`:

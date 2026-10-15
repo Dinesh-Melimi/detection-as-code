@@ -9,6 +9,7 @@ from pathlib import Path
 
 from .convert import BACKENDS, convert_rule
 from .coverage import render_markdown
+from .defender import export as defender_export
 from .harness import run_rule
 from .migrate import plan, render
 from .rules import RULES_DIR, load_rules, validate_all
@@ -84,6 +85,20 @@ def cmd_sentinel(args) -> int:
     return 0
 
 
+def cmd_defender(args) -> int:
+    rules = load_rules(Path(args.rules))
+    result = defender_export([r.data for r in rules])
+    text = json.dumps(result["rules"], indent=2)
+    if args.out == "-":
+        print(text)
+    else:
+        Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.out).write_text(text, encoding="utf-8")
+        print(f"wrote {args.out}: {len(result['rules'])} Defender XDR custom detection rules "
+              f"({len(result['skipped'])} SIEM-only rules skipped)")
+    return 0
+
+
 def cmd_migrate(args) -> int:
     p = plan(args.legacy, load_rules(Path(args.rules)))
     md = render(p)
@@ -117,6 +132,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--out", default="build/sentinel/analytics-rules.json",
                    help="output file, or - for stdout")
     p.set_defaults(func=cmd_sentinel)
+
+    p = sub.add_parser("defender", help="export rules as Microsoft Defender XDR custom detection rules")
+    p.add_argument("--out", default="build/defender/custom-detections.json",
+                   help="output file, or - for stdout")
+    p.set_defaults(func=cmd_defender)
 
     p = sub.add_parser("migrate", help="plan a legacy SIEM to Sentinel migration")
     p.add_argument("--legacy", required=True, help="CSV of legacy searches: name,datasource,techniques")
